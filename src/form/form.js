@@ -2,28 +2,30 @@ const restful = require('node-restful');
 const mongoose = restful.mongoose;
 
 const formSchema = new mongoose.Schema({
-    ClinicID: {
+    clinicID: {
         type: Schema.ObjectId,
         required: true
     },
-    DentistID: {
+    dentistID: {
         type: Schema.ObjectId,
+         ref: 'Dentist',
         required: true
     },
-    ClientID: {
+    clientID: {
+        type: Schema.ObjectId,
+        ref: 'Client',
+        required: true,
+        unique: true
+    },
+    dentalArchID: {
         type: Schema.ObjectId,
         required: true,
         unique: true
     },
-    DentalArch: {
-        type: Schema.ObjectId,
-        required: true,
-        unique: true
-    },
-    Services: {
+    services: [{
         type: Schema.ObjectId,
         required: true
-    }
+    }]
 });
 
 module.exports =restful.model('Form', formSchema)
