@@ -49,6 +49,24 @@ exports.create = async(req, res) => {
 
 };
 
+exports.addOperation = async (req, res) => {
+    try{
+        const formId = req.body.formId
+        const operationId = req.body.operationId
+        const operation = Operation.findById(req.body.operationId);
+        
+        if(!operation){
+            return res.status(400).send({ error: "Clínica não encontrada."});
+        }
+
+        await Form.update({_id: formId}, {$push: {operations: operationId}});
+        res.status(201).send({message: "A operação foi adicionada a lista com sucesso."});
+
+    }catch(error){
+        res.status(500).send({errorMessage: error.message}); 
+    }
+}
+
 exports.getAll = async (req, res) => {
 
     const forms = await Form.findAll();
@@ -59,7 +77,7 @@ exports.getAll = async (req, res) => {
 exports.update = function(req, res) {
     try {
         const formId = req.params.id;
-        const form = await User.findById(formId);
+        const form = await Form.findById(formId);
         if(!form) {
             res.status(404).send({errorMessage: "Ficha não encontrada."});
         }

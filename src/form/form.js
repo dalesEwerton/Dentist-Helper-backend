@@ -22,9 +22,8 @@ const formSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    services: [{
-        type: Schema.ObjectId,
-        required: true
+    operations: [{
+        type: Schema.ObjectId
     }]
 });
 
