@@ -159,8 +159,86 @@
             }
           }
         }
+      },
+
+      "/form" : {
+        "post" : {
+          "type": "object",
+          "tags" : [ "Form" ],
+          "summary" : "Create client form in the system",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "body",
+            "name" : "Body",
+            "description" : "Form that we want register",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/Form"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Login OK",
+              "schema" : {
+                "$ref" : "#/definitions/Response-form"
+              }
+            }
+          }
+        },
+        "get" : {
+          "type": "object",
+          "tags" : [ "Form" ],
+          "summary" : "Get all client forms in the system",
+          "produces" : [ "application/json" ],
+          "responses" : {
+            "200" : {
+              "description" : "OK",
+              "schema" : {
+                "$ref" : "#/definitions/Response-form"
+              }
+            }
+          }
+        }
+      },
+
+      "/form/:id" : {
+        "put" : {
+          "type": "string",
+          "tags" : [ "Form" ],
+          "summary" : "Create client form in the system",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "FormID",
+            "description" : "ID of form that will be update",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation"
+            }
+          }
+        },
+        "delete" : {
+          "type": "string",
+          "tags" : [ "Form" ],
+          "summary" : "Delete client form in the system",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "path",
+            "name" : "FormID",
+            "description" : "ID of form that will be delete",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successful operation"
+            }
+          }
+        }
       }
     },
+
 
     "definitions" : {
         "Register" : {
@@ -202,6 +280,29 @@
           }
         },
 
+        "Form" : {
+          "properties" : {
+              "clinicID" : {
+                "type" : "string"
+              },
+              "dentistID" : {
+                "type" : "string"
+              },
+              "clientID" : {
+                "type" : "string"
+              },
+              "dentalArchID" : {
+                "type" : "string"
+              }
+            },
+            "example" : {
+              "clinicID" : "1",
+              "dentistID" : "1",
+              "clientID" : "1",
+              "dentalArchID" : "1"
+            }
+          },
+
         "Response" : {
         "properties" : {
           "name" : {
@@ -228,6 +329,31 @@
           "token": "string"
         }
         },
+
+        "Response-form" : {
+          "properties" : {
+            "clinicID" : {
+              "type" : "string"
+            },
+            "dentistID" : {
+              "type" : "string"
+            },
+            "clientID" : {
+              "type" : "string"
+            },
+            "dentalArchID" : {
+              "type" : "string"
+            }
+          },
+          "example" : {
+            "form": {
+              "clinicID" : "1",
+              "dentistID" : "1",
+              "clientID": "1",
+              "dentalArch" : "1"
+            }
+          }
+          },
 
         "Request - Forgot Password" : {
             "properties" : {
