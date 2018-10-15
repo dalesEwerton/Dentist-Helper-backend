@@ -21,7 +21,7 @@ exports.verifyToken = async(req, res, next) => {
         next();
     });
 };
-exports.register = async(req, res) => {
+exports.create = async(req, res) => {
 
     const clinic = Clinic.findById(req.body.clinicID);
     const dentist = Dentist.findById(req.body.dentistID);
